@@ -11,6 +11,18 @@ a:hover {
     color: #3495b2;
 }
 
+.inactive a {
+    text-decoration: none;
+    color: #64828b;
+}
+.inactive a:hover {
+    color: #64828b;
+}
+
+a.chosen {
+    text-decoration: underline;
+}
+
 li {
     list-style-type: none;
 }

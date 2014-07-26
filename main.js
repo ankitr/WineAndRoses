@@ -32,6 +32,8 @@
             a.href="#";
             a.addEventListener("click", function() {
                 if (active) {
+                    el.className += " inactive";
+                    a.className += " chosen";
                     active = false;
                     if (content.callback) {
                         content.callback(world, log);
