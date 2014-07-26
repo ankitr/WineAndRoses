@@ -7,3 +7,10 @@ body {
 a, a:visited {
     color: #2e7c9b;
 }
+a:hover {
+    color: #3495b2;
+}
+
+li {
+    list-style-type: none;
+}

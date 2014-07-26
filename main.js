@@ -1,50 +1,55 @@
-function echo(node) {
-    console.log(node);
-    var el = document.createElement("div");
-    var text = document.createElement("p");
-    text.innerText = node.description;
-    el.appendChild(text);
+~function() {
+    var player = {};
+    function echo(node) {
+        console.log(node);
+        var el = document.createElement("div");
+        var text = document.createElement("p");
+        text.innerText = node.description;
+        el.appendChild(text);
 
-    var l = document.createElement("ul");
-    Object.keys(node.choices).forEach(function(choice) {
-        var content = node.choices[choice];
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.innerText = choice;
-        a.href="#";
-        a.addEventListener("click", function() {
-            content.callback();
-            if (content.pointer) {
-                echo(content.pointer);
-            } else {
-                el.appendChild(document.createTextNode("Done."));
-            }
-        });
-        li.appendChild(a);
-        l.appendChild(li);
-    })
-    el.appendChild(l);
-    document.getElementById("gamewrapper").appendChild(el);
-}
+        var l = document.createElement("ul");
+        Object.keys(node.choices).forEach(function(choice) {
+            var content = node.choices[choice];
+            var li = document.createElement("li");
+            var a = document.createElement("a");
+            a.innerText = choice;
+            a.href="#";
+            a.addEventListener("click", function() {
+                if (content.callback) {
+                    content.callback(player);
+                }
+                if (content.pointer) {
+                    echo(content.pointer);
+                } else {
+                    el.appendChild(document.createTextNode("Done."));
+                }
+            });
+            li.appendChild(a);
+            l.appendChild(li);
+        })
+        el.appendChild(l);
+        document.getElementById("gamewrapper").appendChild(el);
+    }
 
-window.addEventListener('load', function() {
-    var next = {
-        'description': 'Something happens.',
-        'choices': {
-            'Panic': {
-                'callback': function() {},
-                'pointer': null
+    window.addEventListener('load', function() {
+        var next = {
+            'description': 'Something happens.',
+            'choices': {
+                'Panic': {
+                    'callback': function() {},
+                    'pointer': null
+                }
             }
         }
-    }
-    var start = {
-       'description': 'You meet a stranger',
-       'choices': {
-           'say hello': {
-               'callback': function() {},
-               'pointer': next
+        var start = {
+           'description': 'You meet a stranger',
+           'choices': {
+               'say hello': {
+                   'callback': function() {},
+                   'pointer': next
+               }
            }
-       }
-    };
-    echo(start);
-}, false)
+        };
+        echo(start);
+    }, false);
+}();
