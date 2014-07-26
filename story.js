@@ -19,7 +19,7 @@ var life = {
                     world.me.mystery = 1;
                     world.me.courage = 0;
                     world.us.significance = 0;
-                }
+                },
                 next: 'bus'
             }
         }
