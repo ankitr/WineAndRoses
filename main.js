@@ -10,6 +10,7 @@
         document.getElementById("gamewrapper").appendChild(p);
     }
     function rungame(node, key) {
+        var active = true;
         if (node[key].color) {
             document.body.style.backgroundColor = node[key].color;
         }
@@ -30,13 +31,16 @@
             a.innerText = choice;
             a.href="#";
             a.addEventListener("click", function() {
-                if (content.callback) {
-                    content.callback(world, log);
-                }
-                if (content.next) {
-                    rungame(node, content.next);
-                } else {
-                    log("Done.");
+                if (active) {
+                    active = false;
+                    if (content.callback) {
+                        content.callback(world, log);
+                    }
+                    if (content.next) {
+                        rungame(node, content.next);
+                    } else {
+                        log("Done.");
+                    }
                 }
             });
             li.appendChild(a);
