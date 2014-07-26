@@ -2,7 +2,35 @@
 
 var life = {
     start: {
-        // Figure gender out.
+        description: 'You\'re about to meet someone. What do you call them?',
+        choices: {
+            'She': {
+                callback: function (world, log) {
+                    world.you.pronoun = 'she';
+                    world.you.noun = 'girl';
+                    world.you.possession = 'her';
+                },
+                next: 'welcome'
+            },
+            'He': {
+                callback: function (world, log) {
+                    world.you.pronoun = 'he';
+                    world.you.noun = 'boy';
+                    world.you.possession = 'his';
+                },
+                next: 'welcome'
+            },
+            'They': {
+                callback: function (world, log) {
+                    world.you.pronoun = 'they';
+                    world.you.noun = 'person';
+                    world.you.possession = 'their';
+                },
+                next: 'welcome'
+            }
+        }
+    },
+    welcome: {
         description: 'You\'re sitting at a bus stop. A person comes up and sits next to you.',
         choices: {
             'Say hi.': {
