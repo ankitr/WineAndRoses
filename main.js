@@ -1,27 +1,35 @@
 ~function() {
     var player = {};
-    function echo(node) {
-        console.log(node);
+
+    var currentactive = null;
+    function log(text) {
+        var el = document.createElement("div");
+        var p = document.createElement("p");
+        p.innerText = text
+        el.appendChild(p);
+        document.getElementById("gamewrapper").appendChild(p);
+    }
+    function echo(node, key) {
         var el = document.createElement("div");
         var text = document.createElement("p");
-        text.innerText = node.description;
+        text.innerText = node[key].description;
         el.appendChild(text);
 
         var l = document.createElement("ul");
-        Object.keys(node.choices).forEach(function(choice) {
-            var content = node.choices[choice];
+        Object.keys(node[key].choices).forEach(function(choice) {
+            var content = node[key].choices[choice];
             var li = document.createElement("li");
             var a = document.createElement("a");
             a.innerText = choice;
             a.href="#";
             a.addEventListener("click", function() {
                 if (content.callback) {
-                    content.callback(player);
+                    content.callback(player, log);
                 }
                 if (content.next) {
-                    echo(content.next);
+                    echo(node, content.next);
                 } else {
-                    el.appendChild(document.createTextNode("Done."));
+                    log("Done.");
                 }
             });
             li.appendChild(a);
@@ -32,24 +40,31 @@
     }
 
     window.addEventListener('load', function() {
-        var next = {
-            'description': 'Something happens.',
-            'choices': {
-                'Panic': {
-                    'callback': function() {},
-                    'next': null
+        var story = {
+            'second': {
+                'description': 'Something happens.',
+                'choices': {
+                    'Panic!': {
+                    },
+                    'Freak out!': {
+                    }
                 }
-            }
-        }
-        var start = {
-           'description': 'You meet a stranger',
-           'choices': {
-               'say hello': {
-                   'callback': function() {},
-                   'next': next
+            },
+            'start': {
+               'description': 'You meet a stranger',
+               'choices': {
+                   'say hello': {
+                       'next': 'start'
+                   },
+                   'sneeze': {
+                       'callback': function(player, log) {
+                           player.allergies = 0;
+                           log("cow");
+                       }
+                   }
                }
-           }
+            }
         };
-        echo(start);
+        echo(story, 'start');
     }, false);
 }();
