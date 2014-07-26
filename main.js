@@ -53,34 +53,6 @@
     }
 
     window.addEventListener('load', function() {
-        var story = {
-            'second': {
-                'description': 'Something happens.',
-                'choices': function(world) {
-                    var x = {
-                    };
-                    console.log(world);
-                    x[world.allergies || 'banana'] = {
-                        'next': 'start'
-                    };
-                    return x;
-                }
-            },
-            'start': {
-               'description': 'You meet a stranger',
-               'choices': {
-                   'say hello': {
-                       'next': 'second'
-                    },
-                   'sneeze': {
-                        'callback': function(world, log) {
-                            world.allergies = 'dandelions';
-                            log("cow");
-                        }
-                   }
-                }
-            }
-        };
         rungame(life, 'start');
     }, false);
 }();
