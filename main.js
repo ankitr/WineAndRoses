@@ -1,5 +1,5 @@
 ~function() {
-    var world = {};
+    var world = {'you':{}, 'me':{}, 'us':{}};
 
     var currentactive = null;
     function log(text) {
