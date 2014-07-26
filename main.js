@@ -1,5 +1,5 @@
 ~function() {
-    var player = {};
+    var world = {};
 
     var currentactive = null;
     function log(text) {
@@ -21,7 +21,7 @@
         var l = document.createElement("ul");
 
         var choices = node[key].choices;
-        choices = typeof(choices) === 'function' ? choices(player) : choices;
+        choices = typeof(choices) === 'function' ? choices(world) : choices;
 
         Object.keys(choices).forEach(function(choice) {
             var content = choices[choice];
@@ -31,7 +31,7 @@
             a.href="#";
             a.addEventListener("click", function() {
                 if (content.callback) {
-                    content.callback(player, log);
+                    content.callback(world, log);
                 }
                 if (content.next) {
                     rungame(node, content.next);
@@ -50,11 +50,11 @@
         var story = {
             'second': {
                 'description': 'Something happens.',
-                'choices': function(player) {
+                'choices': function(world) {
                     var x = {
                     };
-                    console.log(player);
-                    x[player.allergies || 'banana'] = {
+                    console.log(world);
+                    x[world.allergies || 'banana'] = {
                         'next': 'start'
                     };
                     return x;
@@ -67,8 +67,8 @@
                        'next': 'second'
                     },
                    'sneeze': {
-                        'callback': function(player, log) {
-                            player.allergies = 'dandelions';
+                        'callback': function(world, log) {
+                            world.allergies = 'dandelions';
                             log("cow");
                         }
                    }
