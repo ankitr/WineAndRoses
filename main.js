@@ -10,6 +10,9 @@
         document.getElementById("gamewrapper").appendChild(p);
     }
     function rungame(node, key) {
+        if (node[key].color) {
+            document.body.style.backgroundColor = node[key].color;
+        }
         var el = document.createElement("div");
         var text = document.createElement("p");
         text.innerText = node[key].description;
@@ -72,6 +75,6 @@
                 }
             }
         };
-        rungame(story, 'start');
+        rungame(life, 'start');
     }, false);
 }();
