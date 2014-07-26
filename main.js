@@ -9,7 +9,7 @@
         el.appendChild(p);
         document.getElementById("gamewrapper").appendChild(p);
     }
-    function echo(node, key) {
+    function rungame(node, key) {
         var el = document.createElement("div");
         var text = document.createElement("p");
         text.innerText = node[key].description;
@@ -27,7 +27,7 @@
                     content.callback(player, log);
                 }
                 if (content.next) {
-                    echo(node, content.next);
+                    rungame(node, content.next);
                 } else {
                     log("Done.");
                 }
@@ -65,6 +65,6 @@
                }
             }
         };
-        echo(story, 'start');
+        rungame(story, 'start');
     }, false);
 }();
