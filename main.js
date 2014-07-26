@@ -16,8 +16,12 @@
         el.appendChild(text);
 
         var l = document.createElement("ul");
-        Object.keys(node[key].choices).forEach(function(choice) {
-            var content = node[key].choices[choice];
+
+        var choices = node[key].choices;
+        choices = typeof(choices) === 'function' ? choices(player) : choices;
+
+        Object.keys(choices).forEach(function(choice) {
+            var content = choices[choice];
             var li = document.createElement("li");
             var a = document.createElement("a");
             a.innerText = choice;
@@ -43,26 +47,29 @@
         var story = {
             'second': {
                 'description': 'Something happens.',
-                'choices': {
-                    'Panic!': {
-                    },
-                    'Freak out!': {
-                    }
+                'choices': function(player) {
+                    var x = {
+                    };
+                    console.log(player);
+                    x[player.allergies || 'banana'] = {
+                        'next': 'start'
+                    };
+                    return x;
                 }
             },
             'start': {
                'description': 'You meet a stranger',
                'choices': {
                    'say hello': {
-                       'next': 'start'
-                   },
+                       'next': 'second'
+                    },
                    'sneeze': {
-                       'callback': function(player, log) {
-                           player.allergies = 0;
-                           log("cow");
-                       }
+                        'callback': function(player, log) {
+                            player.allergies = 'dandelions';
+                            log("cow");
+                        }
                    }
-               }
+                }
             }
         };
         rungame(story, 'start');
