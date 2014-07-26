@@ -18,8 +18,8 @@
                 if (content.callback) {
                     content.callback(player);
                 }
-                if (content.pointer) {
-                    echo(content.pointer);
+                if (content.next) {
+                    echo(content.next);
                 } else {
                     el.appendChild(document.createTextNode("Done."));
                 }
@@ -37,7 +37,7 @@
             'choices': {
                 'Panic': {
                     'callback': function() {},
-                    'pointer': null
+                    'next': null
                 }
             }
         }
@@ -46,7 +46,7 @@
            'choices': {
                'say hello': {
                    'callback': function() {},
-                   'pointer': next
+                   'next': next
                }
            }
         };
