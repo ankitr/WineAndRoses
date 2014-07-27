@@ -24,7 +24,7 @@ var life = {
         }
     },
     end: {
-        description: 'It\'s time for her to go. You look onwards. Slowly, she dissapears into the horizon.',
+        description: 'It\'s time for her to go. You look onwards. Slowly, she disappears into the horizon.',
         choices: {
             'Move on': {
                 callback: function (world, log) {
