@@ -4,10 +4,18 @@
     var currentactive = null;
     function log(text) {
         var el = document.createElement("div");
-        var p = document.createElement("p");
-        p.innerText = text
-        el.appendChild(p);
-        document.getElementById("gamewrapper").appendChild(p);
+        if (arguments.length === 1) {
+            var p = document.createElement("p");
+            p.innerText = text;
+            el.appendChild(p);
+        } else {
+            [].forEach.call(arguments, function(line) {
+                var p = document.createElement("p");
+                p.innerText = line[0] + ': ' + line[1];
+                el.appendChild(p);
+            });
+        }
+        document.getElementById("gamewrapper").appendChild(el);
     }
     function rungame(node, key) {
         var active = true;
