@@ -25,7 +25,7 @@ var life = {
             'Avoid eye contact': {
                 callback: function (world, log) {
                     world.you.love = 0;
-                    world.you.headphones = true; 
+                    world.you.headphones = true;
                     world.you.curiosity = 0;
                     world.me.love = 0;
                     world.me.courage = 0;
