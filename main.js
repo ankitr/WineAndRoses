@@ -24,7 +24,7 @@
         }
         var el = document.createElement("div");
         var text = document.createElement("p");
-        text.innerText = node[key].description;
+        text.innerText = node[key].description || '';
         el.appendChild(text);
 
         var l = document.createElement("ul");
