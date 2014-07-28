@@ -49,6 +49,7 @@ var life = {
             }
         }
     },
+
     end: {
         description: 'It\'s time for her to go. You look onwards. Slowly, she disappears into the horizon.',
         choices: {
@@ -63,4 +64,5 @@ var life = {
             }
         }
     }
+
 }
