@@ -14,6 +14,8 @@
 
     var baudqueue = [];
     var baudindex = 0;
+    var baudchar = 20;
+    var baudline = 200;
     function baud() {
         if (baudindex < baudqueue.length) {
             var text = baudqueue[baudindex];
@@ -26,9 +28,9 @@
                     if (charindex < text.length) {
                         p.textContent += text[charindex];
                         charindex++;
-                        window.setTimeout(char, 10);
+                        window.setTimeout(char, baudchar);
                     } else {
-                        window.setTimeout(baud, 10);
+                        window.setTimeout(baud, baudline);
                     }
                 }
                 char();
@@ -38,7 +40,7 @@
             }
             baudindex++;
         } else {
-            window.setTimeout(baud, 10);
+            window.setTimeout(baud, baudline);
         }
     }
     baud();
