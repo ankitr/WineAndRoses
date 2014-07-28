@@ -3,30 +3,27 @@
 
     var currentactive = null;
     function log(text) {
-        var el = document.createElement("div");
         if (arguments.length === 1) {
+            var el = document.createElement("div");
             var p = document.createElement("p");
             p.innerText = text;
             el.appendChild(p);
+            document.getElementById("gamewrapper").appendChild(el);
         } else {
             [].forEach.call(arguments, function(line) {
-                var p = document.createElement("p");
-                p.innerText = line[0] + ': ' + line[1];
-                el.appendChild(p);
+                log(line[0] + ': ' + line[1]);
             });
         }
-        document.getElementById("gamewrapper").appendChild(el);
     }
     function rungame(node, key) {
         var active = true;
         if (node[key].color) {
             document.body.style.backgroundColor = node[key].color;
         }
-        var el = document.createElement("div");
-        var text = document.createElement("p");
-        text.innerText = node[key].description || '';
-        el.appendChild(text);
 
+        log(node[key].description || '');
+
+        var el = document.createElement("div");
         var l = document.createElement("ul");
 
         var choices = node[key].choices;
