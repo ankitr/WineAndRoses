@@ -22,7 +22,6 @@
             if (typeof(text) === 'string') {
                 var p = document.createElement("p");
                 document.getElementById("gamewrapper").appendChild(p);
-
                 var charindex = 0;
                 function char() {
                     if (charindex < text.length) {
@@ -73,11 +72,7 @@
                     if (content.callback) {
                         content.callback(world, log);
                     }
-                    if (content.next) {
-                        rungame(node, content.next);
-                    } else {
-                        log("Done.");
-                    }
+                    rungame(node, content.next);
                 }
             });
             li.appendChild(a);
